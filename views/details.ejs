@@ -1,0 +1,20 @@
+<% include ./partials/header %>
+<p><h1>Drafts</h1></p>
+<% if(currentUser){ %>
+<% currentUser.drafts.forEach(function(item){ %>
+    <%= item.name %><br>
+    <%= item.room %><br>
+    <%= item.price %><hr>
+<a href="/hotel/confirm/<%= item.id %>"><button>confirm</button></a>
+<% }) %><br><br>
+
+<p><h1>Confirmed bookings</h1></p>
+<% currentUser.drafts.forEach(function(item){ %>
+    <%= item.name %><br>
+    <%= item.room %><br>
+    <%= item.price %><hr>
+
+<% }) } %>
+
+
+<% include ./partials/footer %>

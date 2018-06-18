@@ -1,0 +1,57 @@
+<% include ../partials/header %>
+    <p><h1><%= hotel.name %></h1></p>
+    <p><h2>Rs. <%= hotel.price %></h2></p>
+    <p><h2>Location: <%= hotel.location %></h2></p>
+    
+    <form action="/hotel/add/<%= hotel._id %>" method='POST'>
+        <input type="number" name="roomNumber">
+        <button>add rooms</button>
+    </form>
+    
+    
+    <a href="/hotel/confirm/<%= hotel._id %>"><button>complete process</button></a>
+    
+    
+    <div>
+        <h1>Recommendations</h1>
+        <p>Hotels nearby 
+        <% location.forEach(function(item){ %>
+            <a href="/hotel/<%= item._id %>"> <%= item.name %> ,</a>
+        <% }) %></p>
+        
+        <p>Hotels with similar price 
+        <% price.forEach(function(item){ %>
+            <a href="/hotel/<%= item._id %>"> <%= item.name %> - <%= item.price %> ,</a><br>
+        <% }) %></p>
+        
+    </div>
+    
+    <h3>Information about customers</h3>
+    <div class="flex">
+    <div class="item">
+        People visited:<br>
+        <% for (i = 0; i < hotel.visitors.length; i++) { %>
+            <p><%= hotel.visitors[i].username %></p>
+        <% } %>
+        <p> <%= currentUser.username %> </p>
+    </div>
+    <div class="item">
+        People under draft category:<br>
+        <% for (i = 0; i < hotel.draft.length; i++) { %>
+            <p><%= hotel.draft[i].username %></p>
+        <% } %>
+    </div>
+    <div class="item">
+        People visited:<br>
+        <% for (i = 0; i < hotel.done.length; i++) { %>
+            <p><%= hotel.done[i].username %></p>
+        <% } %>
+    </div>
+    
+    </div>
+    
+    
+    
+    
+    
+<% include ../partials/footer %>
